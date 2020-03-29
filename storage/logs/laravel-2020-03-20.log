@@ -1,0 +1,110 @@
+[2020-03-20 09:58:44] prod.INFO: ==============  
+[2020-03-20 09:58:44] prod.INFO: array (
+  '_token' => NULL,
+  'name' => '行业新闻',
+  'mobile' => NULL,
+  'email' => NULL,
+  'content' => NULL,
+)  
+[2020-03-20 10:02:17] prod.INFO: ==============  
+[2020-03-20 10:02:17] prod.INFO: array (
+  '_token' => NULL,
+  'name' => '行业新闻',
+  'mobile' => NULL,
+  'email' => NULL,
+  'content' => NULL,
+)  
+[2020-03-20 10:03:22] prod.INFO: ==============  
+[2020-03-20 10:03:22] prod.INFO: array (
+  '_token' => NULL,
+  'name' => '行业新闻',
+  'mobile' => NULL,
+  'email' => NULL,
+  'content' => NULL,
+)  
+[2020-03-20 10:05:31] prod.INFO: ==============  
+[2020-03-20 10:05:31] prod.INFO: array (
+  '_token' => NULL,
+  'name' => '行业新闻',
+  'mobile' => NULL,
+  'email' => NULL,
+  'content' => NULL,
+)  
+[2020-03-20 11:00:02] prod.ERROR: syntax error, unexpected ';', expecting ')' {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): syntax error, unexpected ';', expecting ')' at /Users/jack/project/php/www.13.com/app/Http/Controllers/Home/AboutController.php:49)
+[stacktrace]
+#0 /Users/jack/project/php/www.13.com/vendor/composer/ClassLoader.php(322): Composer\\Autoload\\includeFile('/Users/jack/pro...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Http\\\\Contro...')
+#2 [internal function]: spl_autoload_call('App\\\\Http\\\\Contro...')
+#3 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(788): ReflectionClass->__construct('App\\\\Http\\\\Contro...')
+#4 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build('App\\\\Http\\\\Contro...')
+#5 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('App\\\\Http\\\\Contro...', Array)
+#6 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('App\\\\Http\\\\Contro...', Array)
+#7 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Route.php(233): Illuminate\\Foundation\\Application->make('App\\\\Http\\\\Contro...')
+#8 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Route.php(833): Illuminate\\Routing\\Route->getController()
+#9 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Route.php(794): Illuminate\\Routing\\Route->controllerMiddleware()
+#10 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Router.php(693): Illuminate\\Routing\\Route->gatherMiddleware()
+#11 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Router.php(673): Illuminate\\Routing\\Router->gatherRouteMiddleware(Object(Illuminate\\Routing\\Route))
+#12 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#13 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#14 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#15 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#16 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(65): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 /Users/jack/project/php/www.13.com/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#37 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#38 /Users/jack/project/php/www.13.com/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#39 {main}
+"} 
+[2020-03-20 11:00:02] prod.ERROR: syntax error, unexpected ';', expecting ')' {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): syntax error, unexpected ';', expecting ')' at /Users/jack/project/php/www.13.com/app/Http/Controllers/Home/AboutController.php:49)
+[stacktrace]
+#0 /Users/jack/project/php/www.13.com/vendor/composer/ClassLoader.php(322): Composer\\Autoload\\includeFile('/Users/jack/pro...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Http\\\\Contro...')
+#2 [internal function]: spl_autoload_call('App\\\\Http\\\\Contro...')
+#3 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/DataCollector/RouteCollector.php(63): class_exists('App\\\\Http\\\\Contro...')
+#4 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/DataCollector/RouteCollector.php(37): Barryvdh\\Debugbar\\DataCollector\\RouteCollector->getRouteInformation(Object(Illuminate\\Routing\\Route))
+#5 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/LaravelDebugbar.php(826): Barryvdh\\Debugbar\\DataCollector\\RouteCollector->collect()
+#6 /Users/jack/project/php/www.13.com/vendor/maximebf/debugbar/src/DebugBar/DebugBar.php(265): Barryvdh\\Debugbar\\LaravelDebugbar->collect()
+#7 /Users/jack/project/php/www.13.com/vendor/maximebf/debugbar/src/DebugBar/DebugBar.php(321): DebugBar\\DebugBar->getData()
+#8 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/LaravelDebugbar.php(723): DebugBar\\DebugBar->sendDataInHeaders(true)
+#9 /Users/jack/project/php/www.13.com/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(74): Barryvdh\\Debugbar\\LaravelDebugbar->modifyResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\Http\\JsonResponse))
+#10 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#11 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 /Users/jack/project/php/www.13.com/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#13 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#25 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#29 /Users/jack/project/php/www.13.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#30 /Users/jack/project/php/www.13.com/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#31 {main}
+"} 
