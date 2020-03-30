@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Home'], function (){
     Route::get('/index.html', 'IndexController@index');
-    Route::get('/product.html', 'ProductController@index');
-    Route::get('/product/{id}.html', 'ProductController@detail');
-    Route::get('/news.html', 'NewsController@index');
-    Route::get('/news/{id}.html', 'NewsController@detail');
-    Route::get('/example.html', 'ExampleController@index');
+    Route::get('/product.html', 'HappyController@index');
+    Route::get('/product/{id}.html', 'HappyController@detail');
+    Route::get('/news.html', 'NotebookController@index');
+    Route::get('/news/{id}.html', 'NotebookController@detail');
+    Route::get('/example.html', 'EventController@index');
     Route::get('/about.html', 'AboutController@index');
     Route::post('/feedback', 'AboutController@feedback');
 });

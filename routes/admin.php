@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('/home/index.html');
+    return redirect('/admin/index');
 });
 Route::get('admin', function () {
     return redirect('/admin/index');
@@ -46,9 +46,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('/category/getCategory/{type}', 'CategoryController@getCategory');
         Route::resource('/config', 'ConfigController');
         Route::resource('/feedback', 'FeedbackController');
-        Route::resource('/example', 'ExampleController');
+        Route::resource('/event', 'EventController');
         Route::resource('/link', 'LinkController');
-        Route::resource('/news', 'NewsController');
-        Route::resource('/product', 'ProductController');
+        Route::resource('/notebook', 'NotebookController');
+        Route::resource('/happy', 'HappyController');
     });
 });
