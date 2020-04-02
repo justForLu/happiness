@@ -138,4 +138,23 @@ class BaseEnum extends Enum {
 
         echo $template;
     }
+
+    /**
+     * 枚举数组键值对
+     * @return array
+     */
+    public static function enumArr()
+    {
+        $enumArr = array();
+
+        $enumItems = self::getEnumValues();
+
+        if($enumItems) {
+            foreach ($enumItems as $key => $val) {
+                $enumArr[$val->getConstValue()] = self::getEnumDesc($key);
+            }
+        }
+
+        return $enumArr;
+    }
 }

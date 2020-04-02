@@ -5,7 +5,7 @@ namespace App\Repositories\Home\Criteria;
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 
-class ProductCriteria extends Criteria {
+class NotebookCriteria extends Criteria {
 
     private $conditions;
 
@@ -20,7 +20,6 @@ class ProductCriteria extends Criteria {
      */
     public function apply($model, Repository $repository)
     {
-
         $model = $model->orderBy('id','DESC');
 
         return $model;

@@ -20,7 +20,7 @@
                     {{\App\Enums\UserEnum::enumSelect(isset($params['username']) ?  $params['username'] : '','请选择添加人','username')}}
                 </div>
                 <div class="col-sm-2">
-                    {{\App\Enums\BasicEnum::enumSelect(isset($params['status']) ?  $params['status'] : '','请选择状态','status')}}
+                    {{\App\Enums\EventEnum::enumSelect(isset($params['status']) ?  $params['status'] : '','请选择状态','status')}}
                 </div>
                 <div class="col-sm-1">
                     <button type="submit" class="btn bg-olive">搜索</button>

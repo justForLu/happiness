@@ -21,19 +21,19 @@ class NotebookRepository extends BaseRepository
     public function getList($params = [])
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
-        $size = isset($params['size']) && $params['size'] > 0 ? $params['size'] : 14;
+        $size = isset($params['size']) && $params['size'] > 0 ? $params['size'] : 10;
 
-        $where[] = ['status','=',BasicEnum::ACTIVE];
+        $where = [];
 
         $count = $this->model->where($where)->count();
 
         $list = $this->model->where($where)
-            ->offset($page-1)->limit($size)
-            ->orderBy('sort','ASC')
+            ->offset(($page-1)*$size)->limit($size)
             ->orderBy('id','DESC')
             ->get()->toArray();
 
-        return ['list' => $list,'count' => $count];
+        $total_page = ceil($count/$size);
+        return ['list' => $list,'count' => $count, 'page' => $page, 'total_page' => $total_page];
     }
 
 }

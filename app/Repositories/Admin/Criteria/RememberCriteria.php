@@ -1,11 +1,11 @@
 <?php
-namespace App\Repositories\Home\Criteria;
 
+namespace App\Repositories\Admin\Criteria;
 
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 
-class NewsCriteria extends Criteria {
+class RememberCriteria extends Criteria {
 
     private $conditions;
 
@@ -20,6 +20,10 @@ class NewsCriteria extends Criteria {
      */
     public function apply($model, Repository $repository)
     {
+
+        if(isset($this->conditions['title']) && !empty($this->conditions['title'])){
+            $model = $model->where('title', 'like','%' . $this->conditions['title'] . '%');
+        }
 
         $model = $model->orderBy('id','DESC');
 

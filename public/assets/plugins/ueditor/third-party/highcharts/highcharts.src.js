@@ -11843,7 +11843,7 @@ Chart.prototype = {
 	},
 
 	/**
-	 * Link two or more series together. This is done initially from Chart.render,
+	 * Remember two or more series together. This is done initially from Chart.render,
 	 * and after Chart.addSeries and Series.remove.
 	 */
 	linkSeries: function () {

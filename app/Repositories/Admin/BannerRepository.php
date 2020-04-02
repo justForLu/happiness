@@ -4,11 +4,11 @@ namespace App\Repositories\Admin;
 
 use App\Repositories\BaseRepository;
 
-class LinkRepository extends BaseRepository
+class BannerRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Link';
+        return 'App\Models\Common\Banner';
     }
 
 

@@ -35,7 +35,7 @@ class EventRequest extends Request
     public function messages()
     {
         return  [
-            'title.required' => '请输入案例标题',
+            'title.required' => '请输入日程标题',
             'title.max' => '日程标题不能超过32个字',
             'content.required' => '日程内容不能为空',
             'content.max' => '日程内容不能超过200字',

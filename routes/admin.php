@@ -46,8 +46,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('/category/getCategory/{type}', 'CategoryController@getCategory');
         Route::resource('/config', 'ConfigController');
         Route::resource('/feedback', 'FeedbackController');
+        Route::resource('/banner', 'BannerController');
         Route::resource('/event', 'EventController');
-        Route::resource('/link', 'LinkController');
+        Route::resource('/remember', 'RememberController');
         Route::resource('/notebook', 'NotebookController');
         Route::resource('/happy', 'HappyController');
     });

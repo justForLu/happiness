@@ -34,7 +34,7 @@ class HappyRequest extends Request
     public function messages()
     {
         return  [
-            'title.required' => '请输入商品标题',
+            'title.required' => '请输入标题',
             'title.max' => '标题不能超过50字',
         ];
     }

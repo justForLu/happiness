@@ -15,14 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Home'], function (){
-    Route::get('/index.html', 'IndexController@index');
-    Route::get('/product.html', 'HappyController@index');
-    Route::get('/product/{id}.html', 'HappyController@detail');
-    Route::get('/news.html', 'NotebookController@index');
-    Route::get('/news/{id}.html', 'NotebookController@detail');
-    Route::get('/example.html', 'EventController@index');
-    Route::get('/about.html', 'AboutController@index');
-    Route::post('/feedback', 'AboutController@feedback');
+    Route::get('/get-banner','BannerController@getBanner');
+    Route::get('/get-remember','RememberController@getRemember');
+    Route::post('/add-remember','RememberController@addRemember');
+    Route::post('/edit-remember','RememberController@editRemember');
+    Route::get('/remember-detail/{id}','RememberController@detail');
+    Route::get('/get-event', 'EventController@index');
+    Route::post('/add-event','EventController@addEvent');
+    Route::post('/edit-event','EventController@editEvent');
+    Route::get('/event-detail/{id}','EventController@detail');
+    Route::get('/get-notebook', 'NotebookController@index');
+    Route::post('/add-notebook','NotebookController@addNotebook');
+    Route::post('/edit-notebook','NotebookController@editNotebook');
+    Route::get('/notebook-detail/{id}','NotebookController@detail');
+    Route::get('/get-happy', 'HappyController@index');
+    Route::post('/add-happy','HappyController@addHappy');
+    Route::post('/edit-happy','HappyController@editHappy');
+    Route::get('/happy-detail/{id}','HappyController@detail');
+
 });
 
 

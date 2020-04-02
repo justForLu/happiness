@@ -2,6 +2,7 @@
 namespace App\Repositories\Admin\Criteria;
 
 
+use App\Enums\BasicEnum;
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 
@@ -53,6 +54,8 @@ class MenuCriteria extends Criteria {
         if(isset($this->conditions['menu_ids']) && count($this->conditions['menu_ids'])){
             $model = $model->whereIn('id', $this->conditions['menu_ids']);
         }
+
+        $model = $model->where('status',BasicEnum::ACTIVE);
 
         return $model;
     }

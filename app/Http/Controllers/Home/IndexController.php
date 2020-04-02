@@ -10,11 +10,10 @@ class IndexController extends BaseController
     {
         parent::__construct();
 
-        view()->share('module','index');
     }
 	public function index()
     {
-        return view('home.index.index');
+
     }
 
 }

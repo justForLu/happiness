@@ -405,7 +405,7 @@
             return this._finishedUploads;
         },
 
-        // Link handler, that allows to download files
+        // Remember handler, that allows to download files
         // by drag & drop of the links to the desktop:
         _enableDragToDesktop: function () {
             var link = $(this),

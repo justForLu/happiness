@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BannerEnum;
 use App\Enums\BasicEnum;
-use App\Http\Requests\Admin\LinkRequest;
-use App\Repositories\Admin\Criteria\LinkCriteria;
-use App\Repositories\Admin\LinkRepository as Link;
+use App\Http\Requests\Admin\BannerRequest;
+use App\Repositories\Admin\Criteria\BannerCriteria;
+use App\Repositories\Admin\BannerRepository as Banner;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 
-class LinkController extends BaseController
+class BannerController extends BaseController
 {
-    /**
-     * @var Link
-     */
-    protected $link;
 
-    public function __construct(Link $link)
+    /**
+     * @var Banner
+     */
+    protected $banner;
+
+    public function __construct(Banner $banner)
     {
         parent::__construct();
 
-        $this->link = $link;
+        $this->banner = $banner;
     }
     /**
      * Display a listing of the resource.
@@ -32,11 +34,11 @@ class LinkController extends BaseController
     {
         $params = $request->all();
 
-        $this->link->pushCriteria(new LinkCriteria($params));
+        $this->banner->pushCriteria(new BannerCriteria($params));
 
-        $list = $this->link->paginate(Config::get('admin.page_size',10));
+        $list = $this->banner->paginate(Config::get('admin.page_size',10));
 
-        return view('admin.link.index',compact('params','list'));
+        return view('admin.banner.index',compact('params','list'));
     }
 
     /**
@@ -47,30 +49,31 @@ class LinkController extends BaseController
      */
     public function create(Request $request)
     {
-        return view('admin.link.create');
+        return view('admin.banner.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param LinkRequest $request
+     * @param BannerRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(LinkRequest $request)
+    public function store(BannerRequest $request)
     {
         $params = $request->all();
 
         $data = [
             'title' => $params['title'] ?? '',
-            'url' => $params['url'] ?? '',
-            'sort' => $params['sort'] ?? 0,
+            'image' => $params['image'] ?? '',
+            'category' => $params['category'] ?? BannerEnum::BANNER,
             'status' => $params['status'] ?? BasicEnum::ACTIVE,
+            'sort' => $params['sort'] ?? 0,
             'create_time' => time()
         ];
 
-        $result = $this->link->create($data);
+        $result = $this->banner->create($data);
 
-        return $this->ajaxAuto($result,'添加',url('admin/link'));
+        return $this->ajaxAuto($result,'添加',url('admin/banner'));
     }
 
     /**
@@ -92,33 +95,36 @@ class LinkController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $data = $this->link->find($id);
+        $data = $this->banner->find($id);
+        //处理图片
+        $data->image_path = array_values(FileController::getFilePath($data->image));
 
-        return view('admin.link.edit',compact('data'));
+        return view('admin.banner.edit',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param LinkRequest $request
+     * @param BannerRequest $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(LinkRequest $request, $id)
+    public function update(BannerRequest $request, $id)
     {
         $params = $request->filterAll();
 
         $data = [
             'title' => $params['title'] ?? '',
-            'url' => $params['url'] ?? '',
-            'sort' => $params['sort'] ?? 0,
+            'image' => $params['image'] ?? '',
+            'category' => $params['category'] ?? BannerEnum::BANNER,
             'status' => $params['status'] ?? BasicEnum::ACTIVE,
+            'sort' => $params['sort'] ?? 0,
             'update_time' => time()
         ];
 
-        $result = $this->link->update($data,$id);
+        $result = $this->banner->update($data,$id);
 
-        return $this->ajaxAuto($result,'修改',url('admin/link'));
+        return $this->ajaxAuto($result,'修改',url('admin/banner'));
     }
 
     /**
@@ -129,9 +135,8 @@ class LinkController extends BaseController
      */
     public function destroy($id)
     {
-        $result = $this->link->delete($id);
+        $result = $this->banner->delete($id);
 
         return $this->ajaxAuto($result,'删除');
     }
-
 }

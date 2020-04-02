@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class LinkRequest extends Request
+class BannerRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class LinkRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:10',
-            'url' => 'required',
+            'title' => 'required|max:32',
         ];
     }
 
@@ -35,9 +34,8 @@ class LinkRequest extends Request
     public function messages()
     {
         return  [
-            'title.required' => '请输入友情链接名称',
-            'title.max' => '友情链接名称不能超过10个字',
-            'url.required' => '请输入友情链接地址',
+            'title.required' => '请输入幻灯片标题',
+            'title.max' => '幻灯片标题不能超过32个字',
         ];
     }
 

@@ -7,12 +7,10 @@ namespace App\Enums;
  */
 class NotebookEnum extends BaseEnum {
 
-    const BORN = 1;
-    const DONE = 2;
+    const DONE = 1;
 
     static $desc = array(
-        'BORN' => '想法诞生',
-        'DONE' => '计划完成',
+        'DONE' => '完成',
     );
 
 }

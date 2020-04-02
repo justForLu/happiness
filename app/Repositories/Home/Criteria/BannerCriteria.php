@@ -5,7 +5,7 @@ namespace App\Repositories\Home\Criteria;
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 
-class ExampleCriteria extends Criteria {
+class BannerCriteria extends Criteria {
 
     private $conditions;
 
