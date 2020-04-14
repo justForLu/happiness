@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">状态</label>
+                            <label class="col-sm-3 control-label">分类</label>
                             <div class="col-sm-8">
                                 {{\App\Enums\HappyEnum::enumSelect(\App\Enums\HappyEnum::TRAVEL,false,'category')}}
                             </div>

@@ -38,7 +38,7 @@ class HappyController extends BaseController
             }
         }
 
-        return $this->ajaxSuccess(['list' => $list,'page' => $result['page'], 'total_page' => $result['total_page']],'OK');
+        return $this->ajaxSuccess(['list' => $list,'page' => $result['page'], 'total_page' => $result['total_page'], 'count' => $result['count']],'OK');
     }
 
     /**

@@ -96,6 +96,7 @@ class HappyController extends BaseController
     public function edit($id,Request $request)
     {
         $data = $this->happy->find($id);
+        $data->content = htmlspecialchars_decode($data->content);
 
         return view('admin.happy.edit',compact('data'));
     }

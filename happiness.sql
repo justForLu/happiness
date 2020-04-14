@@ -11,11 +11,37 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 30/03/2020 15:14:30
+ Date: 03/04/2020 11:48:47
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for ss_banner
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_banner`;
+CREATE TABLE `ss_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT '' COMMENT '标题',
+  `image` varchar(32) DEFAULT '' COMMENT '图片',
+  `category` tinyint(1) DEFAULT '0',
+  `sort` int(11) DEFAULT '0' COMMENT '排序',
+  `status` tinyint(1) DEFAULT '0',
+  `create_time` int(11) DEFAULT '0',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of ss_banner
+-- ----------------------------
+BEGIN;
+INSERT INTO `ss_banner` VALUES (1, '幻灯片1', '1,', 1, 1, 1, 1585811674, 1585811674);
+INSERT INTO `ss_banner` VALUES (2, '幻灯片2', '2,', 1, 0, 1, 1585811690, 1585816266);
+INSERT INTO `ss_banner` VALUES (3, '幻灯片3', '3,', 1, 3, 1, 1585811707, 1585811707);
+INSERT INTO `ss_banner` VALUES (4, '前缀图片', '4,', 2, 0, 1, 1585811729, 1585811729);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for ss_category
@@ -75,13 +101,12 @@ CREATE TABLE `ss_event` (
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='日程';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='日程';
 
 -- ----------------------------
 -- Records of ss_event
 -- ----------------------------
 BEGIN;
-INSERT INTO `ss_event` VALUES (1, '测试一下', '测试一下', 1, 1, 1585550659, 1585550947, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -147,13 +172,19 @@ CREATE TABLE `ss_file` (
   `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
   `gmt_update` datetime DEFAULT NULL,
   `note` varchar(500) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '备注',
+  `create_time` int(11) DEFAULT '0',
+  `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='上传文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of ss_file
 -- ----------------------------
 BEGIN;
+INSERT INTO `ss_file` VALUES (1, '/upload/admin/image/2020-04-02/202004021514295742.jpg', '1.jpg', 1, 1, NULL, NULL, '', 1585811669, 1585811669);
+INSERT INTO `ss_file` VALUES (2, '/upload/admin/image/2020-04-02/202004021514489962.jpg', '2.jpg', 1, 1, NULL, NULL, '', 1585811688, 1585811688);
+INSERT INTO `ss_file` VALUES (3, '/upload/admin/image/2020-04-02/202004021515048221.jpg', '3.jpg', 1, 1, NULL, NULL, '', 1585811704, 1585811704);
+INSERT INTO `ss_file` VALUES (4, '/upload/admin/image/2020-04-02/202004021515288690.jpg', 'rose.jpg', 1, 1, NULL, NULL, '', 1585811728, 1585811728);
 COMMIT;
 
 -- ----------------------------
@@ -171,13 +202,12 @@ CREATE TABLE `ss_happy` (
   `update_time` int(11) DEFAULT '0',
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='生活点滴';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='生活点滴';
 
 -- ----------------------------
 -- Records of ss_happy
 -- ----------------------------
 BEGIN;
-INSERT INTO `ss_happy` VALUES (1, '测试一下下', '<p>ces</p>', 1, '', 1, 1585552286, 1585552286, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -226,7 +256,7 @@ CREATE TABLE `ss_manager` (
 -- Records of ss_manager
 -- ----------------------------
 BEGIN;
-INSERT INTO `ss_manager` VALUES (1, 'admin', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', 'emzzLmsysCwl2UNFIq2lUrSzYW8MpZv9oyCL6bCPVRb1eCvMVCS5Aak4SS9j', '2020-03-30 14:12:05', '127.0.0.1', 1, '0,1,1,', 1, 1, '2016-11-25 09:40:30', '2020-03-30 14:12:05', NULL);
+INSERT INTO `ss_manager` VALUES (1, 'admin', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', '46iti3I8FgKHiMyB0bTiyvi2d8018rIMhwuciFFSTJuPaCA2QImU4DCKjpV6', '2020-04-02 14:19:43', '127.0.0.1', 1, '0,1,1,', 1, 1, '2016-11-25 09:40:30', '2020-04-02 14:19:43', NULL);
 INSERT INTO `ss_manager` VALUES (2, 'test', '$2y$10$Ujyg8YXL9SGVaqNFf9slbOwNhaWBO3hqvpMEpLozqM8u6E7vP9hZK', 'PtmQwtKVTFPenmidu7NxC7DF1NzOn5DojN2vxkfzIL9WBw6nSfavItdQZOCQ', '2020-02-13 09:46:46', '127.0.0.1', 1, '0,1,1,2,', 1, 0, '2017-11-23 09:28:10', '2019-05-29 06:27:38', NULL);
 COMMIT;
 
@@ -247,7 +277,7 @@ CREATE TABLE `ss_menu` (
   `module` tinyint(4) NOT NULL DEFAULT '0' COMMENT '所属模块',
   `is_system` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否系统菜单',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of ss_menu
@@ -265,6 +295,8 @@ INSERT INTO `ss_menu` VALUES (11, '生活', 'life', 0, '0,11,11', '/life', 1, 2,
 INSERT INTO `ss_menu` VALUES (12, '日程', 'event', 11, '0,11,12', '/event', 2, 1, 1, 1, 0);
 INSERT INTO `ss_menu` VALUES (13, '日记', 'notebook', 11, '0,11,13', '/notebook', 2, 2, 1, 1, 0);
 INSERT INTO `ss_menu` VALUES (14, '生活点滴', 'happy', 11, '0,11,14', '/happy', 2, 3, 1, 1, 0);
+INSERT INTO `ss_menu` VALUES (15, '纪念日', 'remember', 11, '0,11,15', '/remember', 2, 4, 1, 1, 0);
+INSERT INTO `ss_menu` VALUES (16, '幻灯片', 'banner', 1, '0,1,16', '/banner', 2, 16, 1, 1, 0);
 COMMIT;
 
 -- ----------------------------
@@ -307,13 +339,12 @@ CREATE TABLE `ss_notebook` (
   `update_time` int(11) DEFAULT '0',
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='小本本';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小本本';
 
 -- ----------------------------
 -- Records of ss_notebook
 -- ----------------------------
 BEGIN;
-INSERT INTO `ss_notebook` VALUES (1, '测试一下下', '测试一下下', 1, 1, 1585552021, 1585552021, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -330,7 +361,7 @@ CREATE TABLE `ss_permission` (
   `is_system` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否系统权限',
   PRIMARY KEY (`id`),
   UNIQUE KEY `wx_permissions_code_unique` (`code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COMMENT='权限表';
 
 -- ----------------------------
 -- Records of ss_permission
@@ -380,6 +411,14 @@ INSERT INTO `ss_permission` VALUES (41, '日记列表', 'notebook.index', '', 13
 INSERT INTO `ss_permission` VALUES (42, '添加日记', 'notebook.create,notebook.store', '', 13, 1, 0);
 INSERT INTO `ss_permission` VALUES (43, '编辑日记', 'notebook.edit,notebook.update', '', 13, 1, 0);
 INSERT INTO `ss_permission` VALUES (44, '删除日记', 'notebook.destroy', '', 13, 1, 0);
+INSERT INTO `ss_permission` VALUES (45, '纪念日列表', 'remember.index', '', 15, 1, 0);
+INSERT INTO `ss_permission` VALUES (46, '添加纪念日', 'remember.create,remember.store', '', 15, 1, 0);
+INSERT INTO `ss_permission` VALUES (47, '编辑纪念日', 'remember.edit,remember.update', '', 15, 1, 0);
+INSERT INTO `ss_permission` VALUES (48, '删除纪念日', 'remember.destroy', '', 15, 1, 0);
+INSERT INTO `ss_permission` VALUES (49, '幻灯片列表', 'banner.index', '', 16, 1, 0);
+INSERT INTO `ss_permission` VALUES (50, '添加幻灯片', 'banner.create,banner.store', '', 16, 1, 0);
+INSERT INTO `ss_permission` VALUES (51, '编辑幻灯片', 'banner.edit,banner.update', '', 16, 1, 0);
+INSERT INTO `ss_permission` VALUES (52, '删除幻灯片', 'banner.destroy', '', 16, 1, 0);
 COMMIT;
 
 -- ----------------------------
@@ -432,6 +471,32 @@ CREATE TABLE `ss_product` (
 -- Records of ss_product
 -- ----------------------------
 BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for ss_remember
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_remember`;
+CREATE TABLE `ss_remember` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(32) DEFAULT '',
+  `day` varchar(30) DEFAULT '',
+  `username` tinyint(1) DEFAULT '0',
+  `create_time` int(11) DEFAULT '0',
+  `update_time` int(11) DEFAULT '0',
+  `delete_time` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of ss_remember
+-- ----------------------------
+BEGIN;
+INSERT INTO `ss_remember` VALUES (1, '初次见面', '2月20号', 1, 1585732709, 1585732764, 0);
+INSERT INTO `ss_remember` VALUES (2, '女神节', '3月07号', 1, 1585797592, 1585798893, 0);
+INSERT INTO `ss_remember` VALUES (3, '女神生日', '2月06号（农历）', 1, 1585798345, 1585799154, 0);
+INSERT INTO `ss_remember` VALUES (4, '情人节', '2月14号', 1, 1585798804, 1585798804, 0);
+INSERT INTO `ss_remember` VALUES (5, '七夕节', '7月07号（农历）', 1, 1585798975, 1585798975, 0);
 COMMIT;
 
 -- ----------------------------
