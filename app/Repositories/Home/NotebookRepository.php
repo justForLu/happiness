@@ -32,11 +32,10 @@ class NotebookRepository extends BaseRepository
         $user_ids[] = $user_id;
 
         $where = [];
-        $where['user_id'] = $user_ids;
 
-        $count = $this->model->where($where)->count();
+        $count = $this->model->where($where)->whereIn('user_id',$user_ids)->count();
 
-        $list = $this->model->where($where)
+        $list = $this->model->where($where)->whereIn('user_id',$user_ids)
             ->offset(($page-1)*$size)->limit($size)
             ->orderBy('id','DESC')
             ->get()->toArray();

@@ -24,7 +24,7 @@ class RememberRepository extends BaseRepository
             ->pluck('friend');
         $user_ids[] = $user_id;
 
-        $list = $this->model->where('user_id',$user_ids)
+        $list = $this->model->whereIn('user_id',$user_ids)
             ->orderBy('day','ASC')
             ->orderBy('id','DESC')
             ->get()->toArray();

@@ -34,11 +34,10 @@ class HappyController extends BaseController
         if($list){
             //处理添加人
             $user_ids = array_unique(array_column($list,'user_id'));
-            $user_arr = User::where('id',$user_ids)->pluck('nickname','id');
-            unset($user_arr[0]);    //去除user_id=0的数据
+            $user_arr = User::whereIn('id',$user_ids)->pluck('nickname','id');
 
             foreach ($list as &$v){
-                $v['username'] = $user_arr[$v['user_id']] ?? '';
+                $v['username'] = $v['user_id'] > 0 && isset($user_arr[$v['user_id']]) ? $user_arr[$v['user_id']] : '未知';
                 $v['category'] = HappyEnum::getDesc($v['category']);
                 $v['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
             }
