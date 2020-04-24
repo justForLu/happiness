@@ -2,8 +2,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Enums\NotebookEnum;
-use App\Enums\UserEnum;
-use App\Http\Controllers\Admin\FileController;
+use App\Models\Common\User;
 use Illuminate\Http\Request;
 use App\Repositories\Home\NotebookRepository as Notebook;
 
@@ -33,8 +32,13 @@ class NotebookController extends BaseController
         $list = $result['list'] ?? [];
         //处理数据
         if($list){
+            //处理添加人
+            $user_ids = array_unique(array_column($list,'user_id'));
+            $user_arr = User::where('id',$user_ids)->pluck('nickname','id');
+            unset($user_arr[0]);    //去除user_id=0的数据
+
             foreach ($list as &$v){
-                $v['username'] = UserEnum::getDesc($v['username']);
+                $v['username'] = $user_arr[$v['user_id']] ?? '';
                 $v['status'] = NotebookEnum::getDesc($v['status']);
                 $v['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
             }
@@ -60,6 +64,7 @@ class NotebookController extends BaseController
         }
 
         $data = [
+            'user_id' => $params['user_id'] ?? 0,
             'title' => $params['title'],
             'username' => $params['username'] ?? 0,
             'status' => $params['status'] ?? 0,
@@ -117,14 +122,30 @@ class NotebookController extends BaseController
      */
     public function detail($id)
     {
-        $data = $this->notebook->find($id);
+        $data = $this->notebook->with(array('user'))->find($id);
         $status = NotebookEnum::enumArr();
-        $user = UserEnum::enumArr();
 
-        $data->user_name = isset($user[$data->username]) ? $user[$data->username] : '';
+        $data->user_name = $data->user->nickName;
         $data->status_name = isset($status[$data->status]) ? $status[$data->status] : '';
 
         return $this->ajaxSuccess($data,'OK');
     }
 
+    /**
+     * 删除小本本
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delNotebook(Request $request)
+    {
+        $params = $request->all();
+
+        $result = $this->notebook->delNotebook($params);
+
+        if($result){
+            return $this->ajaxSuccess('','删除成功');
+        }
+
+        return $this->ajaxError('删除失败');
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Home;
 
-use App\Enums\UserEnum;
+use App\Models\Common\User;
 use App\Repositories\Home\RememberRepository as Remember;
 use Illuminate\Http\Request;
 
@@ -26,11 +26,18 @@ class RememberController extends BaseController
      */
 	public function getRemember(Request $request)
     {
-        $list = $this->remember->getList();
+        $params = $request->all();
+
+        $list = $this->remember->getList($params);
         //处理数据
         if($list){
+            //处理添加人
+            $user_ids = array_unique(array_column($list,'user_id'));
+            $user_arr = User::where('id',$user_ids)->pluck('nickname','id');
+            unset($user_arr[0]);    //去除user_id=0的数据
+
             foreach ($list as &$v){
-                $v['username'] = UserEnum::getDesc($v['username']);
+                $v['username'] = $user_arr[$v['user_id']] ?? '';
                 $v['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
             }
         }
@@ -55,6 +62,7 @@ class RememberController extends BaseController
         }
 
         $data = [
+            'user_id' => $params['user_id'] ?? 0,
             'title' => $params['title'],
             'username' => $params['username'] ?? 0,
             'day' => $params['day'],
@@ -104,17 +112,34 @@ class RememberController extends BaseController
     }
 
     /**
-     * 新闻详情
+     * 纪念日详情
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function detail($id)
     {
-        $data = $this->remember->find($id);
-        $user = UserEnum::enumArr();
+        $data = $this->remember->with(array('user'))->find($id);
 
-        $data->user_name = isset($user[$data->username]) ? $user[$data->username] : '';
+        $data->user_name = $data->user->nickName;
 
         return $this->ajaxSuccess($data,'OK');
+    }
+
+    /**
+     * 删除纪念日
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delRemember(Request $request)
+    {
+        $params = $request->all();
+
+        $result = $this->remember->delRemember($params);
+
+        if($result){
+            return $this->ajaxSuccess('','删除成功');
+        }
+
+        return $this->ajaxError('删除失败');
     }
 }

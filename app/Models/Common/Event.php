@@ -11,6 +11,9 @@ class Event extends Base
     // 模型对应表名
     protected $table = 'event';
 
-    protected $fillable = ['title','content','username','status'];
+    protected $fillable = ['user_id','title','content','username','status'];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

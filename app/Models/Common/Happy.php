@@ -11,6 +11,9 @@ class Happy extends Base
     // 模型对应表名
     protected $table = 'happy';
 
-    protected $fillable = ['title','content','username','image','category'];
+    protected $fillable = ['user_id','title','content','username','image','category'];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Enums\HappyEnum;
 use App\Enums\UserEnum;
+use App\Models\Common\User;
 use App\Repositories\Home\HappyRepository as Happy;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,13 @@ class HappyController extends BaseController
         $list = $result['list'] ?? [];
         //处理数据
         if($list){
+            //处理添加人
+            $user_ids = array_unique(array_column($list,'user_id'));
+            $user_arr = User::where('id',$user_ids)->pluck('nickname','id');
+            unset($user_arr[0]);    //去除user_id=0的数据
+
             foreach ($list as &$v){
-                $v['username'] = UserEnum::getDesc($v['username']);
+                $v['username'] = $user_arr[$v['user_id']] ?? '';
                 $v['category'] = HappyEnum::getDesc($v['category']);
                 $v['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
             }
@@ -58,6 +64,7 @@ class HappyController extends BaseController
         }
 
         $data = [
+            'user_id' => $params['user_id'] ?? 0,
             'title' => $params['title'],
             'username' => $params['username'] ?? 0,
             'category' => $params['category'] ?? 0,
@@ -116,15 +123,35 @@ class HappyController extends BaseController
      */
     public function detail($id)
     {
-        $data = $this->happy->find($id);
-        $status = HappyEnum::enumArr();
-        $user = UserEnum::enumArr();
+        $data = $this->happy->with(array('user'))->find($id);
 
-        $data->user_name = isset($user[$data->username]) ? $user[$data->username] : '';
+        $data->user_name = $data->user->nickName;
+        $data = $this->happy->with(array('user'))->find($id);
+        $status = HappyEnum::enumArr();
+
+        $data->user_name = $data->user->nickName;
         $data->category_name = isset($status[$data->category]) ? $status[$data->category] : '';
         $data->content = htmlspecialchars_decode($data->content ?? '');
 
         return $this->ajaxSuccess($data,'OK');
+    }
+
+    /**
+     * 删除生活点滴
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delHappy(Request $request)
+    {
+        $params = $request->all();
+
+        $result = $this->happy->delHappy($params);
+
+        if($result){
+            return $this->ajaxSuccess('','删除成功');
+        }
+
+        return $this->ajaxError('删除失败');
     }
 
 }

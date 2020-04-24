@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Home;
 
 
 
+use Illuminate\Http\Request;
+
 class IndexController extends BaseController
 {
 
@@ -15,5 +17,6 @@ class IndexController extends BaseController
     {
 
     }
+
 
 }
