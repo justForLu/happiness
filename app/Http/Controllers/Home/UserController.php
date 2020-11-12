@@ -35,7 +35,7 @@ class UserController extends BaseController
             return $this->ajaxError('code已过期或其他原因');
         }
 
-        return $this->ajaxSuccess($info);
+        return $this->ajaxSuccess($info,'OK');
     }
 
     /**
@@ -47,7 +47,10 @@ class UserController extends BaseController
     {
         $params = $request->all();
 
-        $this->user->updateUser($params);
+        $res = $this->user->updateUser($params);
+        if($res == -1){
+            return $this->ajaxError('用户信息有误');
+        }
 
         return $this->ajaxSuccess();
     }

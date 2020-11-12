@@ -17,15 +17,14 @@ class RememberRepository extends BaseRepository
 
     public function getList($params = [])
     {
-        $user_id = $params['user_id'] ?? 0;
+//        $user_id = $params['user_id'] ?? 0;
         //暂时逻辑是可以查看自己以及朋友的数据
-        $user_ids = Friend::where('oneself',$user_id)
-            ->where('status',FriendEnum::AGREE)
-            ->pluck('friend');
-        $user_ids[] = $user_id;
+//        $user_ids = Friend::where('oneself',$user_id)
+//            ->where('status',FriendEnum::AGREE)
+//            ->pluck('friend');
+//        $user_ids[] = $user_id;
 
-        $list = $this->model->whereIn('user_id',$user_ids)
-            ->orderBy('day','ASC')
+        $list = $this->model->orderBy('day','ASC')
             ->orderBy('id','DESC')
             ->get()->toArray();
 
@@ -40,9 +39,9 @@ class RememberRepository extends BaseRepository
     public function delRemember($params = [])
     {
         $id = isset($params['id']) ? $params['id'] : 0;
-        $user_id = isset($params['user_id']) ? $params['user_id'] : 0;
+//        $user_id = isset($params['user_id']) ? $params['user_id'] : 0;
 
-        $result = $this->model->where('user_id',$user_id)->where('id',$id)->delete();
+        $result = $this->model->where('id',$id)->delete();
 
         return $result;
     }

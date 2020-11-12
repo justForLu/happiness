@@ -8,7 +8,8 @@ use App\Models\Common\Event;
 use App\Models\Common\Happy;
 use App\Models\Common\Notebook;
 use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class UserRepository extends BaseRepository
 {
@@ -34,7 +35,7 @@ class UserRepository extends BaseRepository
         }
 
         //判断是否存在openID，存在则返回用户信息；不存在则插入用户信息之后返回用户信息
-        $info = $this->model->select('id','openid')->where('openid',$openid)
+        $info = $this->model->select('id')->where('openid',$openid)
             ->first();
         if(!$info){
             $ins_data = [
@@ -45,12 +46,14 @@ class UserRepository extends BaseRepository
             $id = $this->model->insertGetId($ins_data);
 
             $info = [
-                'id' => $id,
-                'openid' => $openid
+                'id' => $id
             ];
         }
 
-        return $info;
+        //加密一个token返回给前端
+        $token = md5($info['id'].$openid);
+
+        return ['id' => $info['id'], 'token' => $token];
     }
 
     public function getUser()
@@ -61,11 +64,20 @@ class UserRepository extends BaseRepository
     /**
      * 更新用户信息
      * @param array $params
+     * @return mixed
      */
     public function updateUser($params = [])
     {
         $id = isset($params['id']) ? $params['id'] : '';
+        $token = isset($params['token']) ? $params['token'] : '';
         if($id){
+            //验证用户信息
+            $user = $this->model->where('id',$id)->first();
+            $check_token = md5($id.$user->openid);
+            if($check_token != $token){
+                return -1;
+            }
+
             $data = [
                 'nickName' => isset($params['nickName']) ? $params['nickName'] : '',
                 'avatarUrl' => isset($params['avatarUrl']) ? $params['avatarUrl'] : '',
@@ -75,6 +87,7 @@ class UserRepository extends BaseRepository
             ];
 
             $this->model->where('id',$id)->update($data);
+
         }
     }
 
@@ -85,13 +98,17 @@ class UserRepository extends BaseRepository
      */
     public function userCount($params = [])
     {
-        $user_id = isset($params['user_id']) ? $params['user_id'] : 0;
+//        $user_id = isset($params['user_id']) ? $params['user_id'] : 0;
+//
+//        if($user_id){
+//            $event = Event::where('user_id',$user_id)->count();
+//            $notebook = Notebook::where('user_id',$user_id)->count();
+//            $happy = Happy::where('user_id',$user_id)->count();
+//        }
 
-        if($user_id){
-            $event = Event::where('user_id',$user_id)->count();
-            $notebook = Notebook::where('user_id',$user_id)->count();
-            $happy = Happy::where('user_id',$user_id)->count();
-        }
+        $event = Event::count();
+        $notebook = Notebook::count();
+        $happy = Happy::count();
 
         $result['event'] = isset($event) ? $event : 0;
         $result['notebook'] = isset($notebook) ? $notebook : 0;
